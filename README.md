@@ -1,85 +1,64 @@
-# Projeto ML (CAGED)
+# Projeto CAGED
 
-Projeto simples de aprendizado de máquina para prever a coluna `saldomovimentacao`:
+Projeto de classificacao para prever a coluna `saldomovimentacao`:
 
-- `1` = admissão
+- `1` = admissao
 - `-1` = desligamento
 
-O modelo usa `LogisticRegression` com pré-processamento básico em `scikit-learn`.
+O modelo usado no projeto e o `RandomForestClassifier`.
 
-## Base utilizada
+## Arquivos principais
 
-Arquivos esperados na raiz do projeto:
+- `main.py`: treina o modelo e gera o CSV final
+- `exploratory_analysis.py`: gera o relatorio exploratorio
+- `ml_pipeline.py`: funcoes de carga, tratamento e modelagem
+- `tests/`: testes em `pytest`
+- `data/`: arquivos CSV
 
-- `caged_curitiba_consolidado_train.csv`
-- `caged_curitiba_consolidado_test.csv`
+## Como executar
 
-No treino, o script filtra apenas os meses permitidos na coluna `competenciadec`:
-
-- `202401`
-- `202411`
-- `202412`
-- `202501`
-- `202511`
-- `202512`
-
-O arquivo de teste é usado para gerar previsões para janeiro de 2026.
-
-## Como rodar
-
-Crie e ative o ambiente virtual:
+Cria o ambiente virtual:
 
 ```bash
 python3 -m venv .venv
+```
+
+Ativa o ambiente virtual:
+
+```bash
 source .venv/bin/activate
 ```
 
-Instale as dependências:
+Instala as dependencias do projeto:
 
 ```bash
 python3 -m pip install -r requirements.txt
 ```
 
-Execute o projeto:
+Gera o relatorio de analise exploratoria:
+
+```bash
+python3 exploratory_analysis.py
+```
+
+Treina o modelo e gera o CSV final com previsoes:
 
 ```bash
 python3 main.py
 ```
 
-## O que o programa faz
+Executa os testes automatizados:
 
-O script:
+```bash
+pytest -v
+```
 
-- carrega os arquivos CSV
-- padroniza os nomes das colunas
-- converte colunas numéricas
-- trata `horascontratuais`
-- cria atributos simples com `cbo2002ocupacao` e `subclasse`
-- remove atributos que não ajudam o modelo, como colunas constantes
-- divide treino e validação com `train_test_split`
-- treina uma `LogisticRegression`
-- avalia o modelo com `F1 Score`
-- gera o arquivo final com as previsões
+## Arquivos CSV
 
-## Saída no terminal
+- `data/caged_curitiba_consolidado_train.csv`
+- `data/caged_curitiba_consolidado_test.csv`
+- `data/caged_curitiba_consolidado_test_com_previsoes.csv`
 
-Durante a execução, o programa mostra:
+## Saida
 
-- informações do dataset
-- colunas removidas na seleção de atributos
-- modelo utilizado
-- quantidade de dados de treino e validação
-- `F1 Score` em porcentagem
-- acurácia em porcentagem
-- `classification report` em porcentagem
-- caminho do arquivo gerado
-
-## Arquivo gerado
-
-Ao final da execução, o script cria:
-
-- `caged_curitiba_consolidado_test_com_previsoes.csv`
-
-Esse arquivo mantém o layout original do arquivo de teste e adiciona a coluna:
-
-- `saldomovimentacao`
+O arquivo final mantém o layout do teste e adiciona a coluna `saldomovimentacao`.
