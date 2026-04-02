@@ -341,4 +341,4 @@ def summarize_dataset(train_df: pd.DataFrame, test_df: pd.DataFrame) -> dict[str
 
 
 def project_root() -> Path:
-    return Path(__file__).resolve().parent
+    return Path(__file__).resolve().parents[1]
