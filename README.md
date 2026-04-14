@@ -10,7 +10,7 @@ O modelo usado no projeto e o `RandomForestClassifier`.
 ## Arquivos principais
 
 - `src/main.py`: treina o modelo e gera o CSV final
-- `src/exploratory_analysis.py`: gera o relatorio exploratorio
+- `exploratory_analysis.ipynb`: analise exploratoria (abrir no Jupyter ou VS Code)
 - `src/ml_pipeline.py`: funcoes de carga, tratamento e modelagem
 - `tests/`: testes em `pytest`
 - `data/`: arquivos CSV
@@ -35,11 +35,7 @@ Instala as dependencias do projeto:
 python3 -m pip install -r requirements.txt
 ```
 
-Gera o relatorio de analise exploratoria:
-
-```bash
-python3 src/exploratory_analysis.py
-```
+Analise exploratoria: abra o notebook `exploratory_analysis.ipynb` no Jupyter ou no editor.
 
 Treina o modelo e gera o CSV final com previsoes:
 
@@ -51,6 +47,20 @@ Executa os testes automatizados:
 
 ```bash
 pytest -v
+```
+
+## Limpeza
+
+Remove caches do Python e do pytest:
+
+```bash
+find . -type d \( -name "__pycache__" -o -name ".pytest_cache" \) -prune -exec rm -rf {} +
+```
+
+Remove arquivos compilados do Python:
+
+```bash
+find . -type f \( -name "*.pyc" -o -name "*.pyo" \) -delete
 ```
 
 ## Arquivos CSV
